@@ -1,0 +1,3 @@
+[submodule "libstm32f042k6"]
+	path = libstm32f042k6
+	url = git@github.com:Livenga/libstm32f042k6.git
