@@ -10,6 +10,7 @@ C_SRC = \
 				src/adc.c \
 				src/usart.c \
 				src/string.c \
+				src/irq_usart.c \
 				src/main.c
 
 S_SRC = \
@@ -18,6 +19,8 @@ S_SRC = \
 C_OBJ = $(addprefix $(OBJDIR)/,$(patsubst %.c,%.o,$(C_SRC)))
 S_OBJ = $(addprefix $(OBJDIR)/,$(patsubst %.s,%.o,$(S_SRC)))
 OBJSDIR = $(sort $(dir $(C_OBJ) $(S_OBJ)))
+
+DEFINE = -D__DEBUG__
 
 ARCH = armv6-m
 CPU = cortex-m0
@@ -43,6 +46,7 @@ $(PRJC):$(S_OBJ) $(C_OBJ)
 
 $(OBJDIR)/%.o:%.c
 	$(CC) -o $@ -c $< \
+		$(DEFINE) \
 		-mtune=$(CPU) \
 		-mcpu=$(CPU) \
 		-march=$(ARCH) \
