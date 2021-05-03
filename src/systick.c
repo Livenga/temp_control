@@ -10,9 +10,15 @@ void SysTick_handler(void) {
   extern uint8_t g_is_adc_running;
 
   if(f_switch) {
-    GPIO_OFF(GPIO_B, 3);
+    GPIO_OFF(GPIO_B, 5);
+
+    //GPIO_OFF(GPIO_A, 8);
+    //GPIO_OFF(GPIO_A, 9);
   } else {
-    GPIO_ON(GPIO_B, 3);
+    GPIO_ON(GPIO_B, 5);
+
+    //GPIO_ON(GPIO_A, 8);
+    //GPIO_ON(GPIO_A, 9);
   }
   f_switch ^= 1;
 

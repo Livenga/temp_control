@@ -1,4 +1,4 @@
-#define __DEBUG__
+//#define __DEBUG__
 
 #include <stdio.h>
 #include <string.h>
@@ -14,7 +14,7 @@
 extern char *uint16_to_hex(char *str, uint16_t value);
 
 
-#define ADC_SIZE 3
+#define ADC_SIZE 4
 
 uint16_t adc_values[ADC_SIZE];
 static uint8_t _cursor = 0;
@@ -49,10 +49,10 @@ void ADC_COMP_handler(void) {
 
     _cursor = 0;
 
-    char buffer[5];
+    char buffer[8];
     int i = 0;
     for(i = 0; i < ADC_SIZE; ++i) {
-      memset((void *)buffer, 0, sizeof(char) * 5);
+      memset((void *)buffer, 0, sizeof(char) * 8);
       uint16_to_hex(buffer, *(adc_values + i));
 
       // USART1 へ出力を行う.
@@ -62,10 +62,10 @@ void ADC_COMP_handler(void) {
       usart_println(USART1, buffer);
     }
 
+#if 0
     float temp = calc_temperature(*adc_values);
-#ifdef __DEBUG__
-    memset((void *)buffer, 0, sizeof(char) * 5);
-    float_to_string(buffer,temp);
+    memset((void *)buffer, 0, sizeof(char) * 8);
+    float_to_string(buffer, temp);
     usart_print(USART1, "#debug ");
     usart_println(USART1, buffer);
 #endif
