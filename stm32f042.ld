@@ -6,8 +6,8 @@ MEMORY {
 ENTRY(_startup)
 
 estack         = ORIGIN(sram) + LENGTH(sram);
-min_heap_size  = 0x200;
-min_stack_size = 0x400;
+min_heap_size  = 0x100;
+min_stack_size = 0x200;
 
 SECTIONS {
   . = 0x00000000;
